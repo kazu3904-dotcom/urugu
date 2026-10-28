@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
+<title>ウルドゥー語 教室カード</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap">
+<style>
+/* Layout: 上に翻訳ボックス、下にカテゴリ別の言葉カード（タップで大きく表示） */
+:root{
+  --bg:#f3f6f4; --surface:#ffffff; --fg:#17241f; --muted:#5b6b64; --line:#d9e2dd;
+  --accent:#0d6b4c; --accent-soft:#e1efe8; --on-accent:#ffffff; --kid:#9a5b10; --kid-soft:#f6ecdd;
+  --jp:"Zen Kaku Gothic New",system-ui,"Hiragino Sans","Yu Gothic",sans-serif;
+  --ur:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101714; --surface:#18221e; --fg:#e7efeb; --muted:#9db0a7; --line:#2b3a34;
+  --accent:#4fc69a; --accent-soft:#1c3a2f; --on-accent:#08241a; --kid:#e5a95a; --kid-soft:#3a2c18; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101714; --surface:#18221e; --fg:#e7efeb; --muted:#9db0a7; --line:#2b3a34;
+  --accent:#4fc69a; --accent-soft:#1c3a2f; --on-accent:#08241a; --kid:#e5a95a; --kid-soft:#3a2c18; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--jp);font-size:16px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
+header h1{font-size:1.6rem;font-weight:900;margin:0;text-wrap:balance}
+header p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+.ur{font-family:var(--ur);direction:rtl;unicode-bidi:isolate;line-height:2.2}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.panel h2{font-size:1rem;margin:0}
+.dir{display:flex;gap:8px;flex-wrap:wrap}
+button,.btn{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 14px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+button:focus-visible,.btn:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.seg[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:700}
+.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:700}
+textarea,input[type=text],input[type=search]{font:inherit;width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg);color:var(--fg)}
+textarea{min-height:84px;resize:vertical}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.hint{font-size:.82rem;color:var(--muted);margin:0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card.kid{border-left:5px solid var(--kid)}
+.card .tag{font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
+.card.kid .tag{color:var(--kid)}
+.card .ja{font-weight:700;font-size:1.05rem}
+.card .ur{font-size:1.35rem;text-align:right}
+.card .rom{font-size:.8rem;color:var(--muted);font-style:italic}
+.card .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.card .acts button,.card .acts .btn{padding:5px 10px;font-size:.85rem}
+.gt{border-color:var(--accent);color:var(--accent)}
+.show{background:var(--accent-soft);border-color:transparent}
+svg{width:16px;height:16px;flex:none}
+.overlay{position:fixed;inset:0;background:var(--surface);z-index:20;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:24px;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));text-align:center}
+.overlay .big{font-size:clamp(2.2rem,8vw,5rem);max-width:95%}
+.overlay .bja{font-size:clamp(1.2rem,4vw,2rem);font-weight:700;color:var(--muted)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:.9rem;z-index:30;max-width:90%}
+details summary{cursor:pointer;font-weight:700}
+.addform{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media (max-width:560px){.addform{grid-template-columns:1fr}}
+.del{color:var(--muted)}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.vf{display:flex;flex-direction:column;gap:4px;font-size:.88rem;font-weight:700;min-width:0}
+select{font:inherit;font-weight:400;width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--bg);color:var(--fg)}
+input[type=range]{accent-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>ウルドゥー語 教室カード</h1>
+    <p>اردو ↔ 日本語　よく使う言葉をタップで大きく見せたり、読み上げたりできます。</p>
+  </header>
+
+  <section class="panel" aria-labelledby="v-h">
+    <h2 id="v-h">読み上げの声</h2>
+    <div class="vgrid">
+      <label class="vf"><span>日本語の声</span><select id="v-ja"></select></label>
+      <label class="vf"><span>ウルドゥー語の声</span><select id="v-ur"></select></label>
+      <label class="vf"><span>速さ <output id="rate-o">0.9</output></span><input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.9"></label>
+    </div>
+    <div class="row"><button id="v-test-ja">日本語を試す</button><button id="v-test-ur">ウルドゥー語を試す</button></div>
+    <p class="hint" id="v-status"></p>
+    <p class="hint">「Natural」「Online」と付いた声がいちばん自然です。WindowsやChromebookでは Microsoft Edge でこのページを開くと、日本語・ウルドゥー語とも自然な声が選べることが多いです（インターネット接続が必要）。</p>
+  </section>
+
+  <section class="panel" aria-labelledby="tr-h">
+    <h2 id="tr-h">自由に翻訳する（Google翻訳で開きます）</h2>
+    <div class="dir" role="group" aria-label="翻訳の向き">
+      <button class="seg" id="d-ja" aria-pressed="true">日本語 → ウルドゥー語</button>
+      <button class="seg" id="d-ur" aria-pressed="false">ウルドゥー語 → 日本語</button>
+    </div>
+    <textarea id="src" placeholder="例：きょうは5時間目まで勉強します。"></textarea>
+    <div class="row">
+      <a class="btn primary" id="gt" href="https://translate.google.com/?sl=ja&tl=ur&op=translate" target="_blank" rel="noopener">Google翻訳で開く</a>
+      <button id="clr">消す</button>
+    </div>
+    <p class="hint">短く、主語をはっきり書くと正確に訳されます。訳した文はウルドゥー語→日本語に戻して意味を確かめてください。名前など個人情報は入れないでください。</p>
+  </section>
+
+  <section class="panel" aria-labelledby="c-h">
+    <h2 id="c-h">言葉カード</h2>
+    <input type="search" id="q" placeholder="さがす（例：トイレ、給食）">
+    <div class="tabs" id="tabs" role="group" aria-label="カテゴリ"></div>
+    <div class="grid" id="grid"></div>
+    <p class="hint">ウルドゥー語の訳は事前にお兄さんに確認してもらってから使ってください。読み上げは端末にウルドゥー語の音声がある場合のみ使えます。</p>
+  </section>
+
+  <section class="panel">
+    <details>
+      <summary>カードを自分で追加する</summary>
+      <p class="hint">Google翻訳などで訳した文を登録できます（この端末のブラウザだけに保存されます）。</p>
+      <div class="addform">
+        <input type="text" id="a-ja" placeholder="日本語">
+        <input type="text" id="a-ur" class="ur" placeholder="اردو">
+        <input type="text" id="a-rom" placeholder="読み方（任意）">
+        <button class="primary" id="a-add">追加する</button>
+      </div>
+    </details>
+  </section>
+</div>
+
+<div class="overlay" id="ov" hidden role="dialog" aria-modal="true" aria-label="大きく表示">
+  <div class="big ur" id="ov-ur"></div>
+  <div class="bja" id="ov-ja"></div>
+  <div class="row" style="justify-content:center">
+    <button id="ov-say-ur">ウルドゥー語で読む</button>
+    <a class="btn" id="ov-gt" href="https://translate.google.com/" target="_blank" rel="noopener">Google翻訳で聞く</a>
+    <button id="ov-say-ja">日本語で読む</button>
+    <button class="primary" id="ov-close">とじる</button>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const CATS={greet:"あいさつ",class:"授業",life:"生活・給食",kid:"児童から伝える",subj:"教科",item:"持ち物",time:"時間割・曜日",place:"学校の場所",mine:"追加したカード"};
+const DATA=[
+["greet","おはようございます","صبح بخیر","subah bakhair"],
+["greet","こんにちは","السلام علیکم","assalam-o-alaikum"],
+["greet","さようなら。また明日。","خدا حافظ، کل ملیں گے","khuda hafiz, kal milenge"],
+["greet","ありがとう","شکریہ","shukriya"],
+["greet","ごめんなさい","معاف کیجیے","maaf kijiye"],
+["greet","だいじょうぶ？","کیا آپ ٹھیک ہیں؟","kya aap theek hain?"],
+["greet","はい","جی ہاں","ji haan"],
+["greet","いいえ","جی نہیں","ji nahin"],
+["class","座ってください","براہ کرم بیٹھ جائیں","baraye karam baith jaayen"],
+["class","立ってください","براہ کرم کھڑے ہو جائیں","baraye karam khade ho jaayen"],
+["class","教科書を出してください","اپنی کتاب نکالیں","apni kitaab nikaalen"],
+["class","ノートに書いてください","اپنی کاپی میں لکھیں","apni kaapi mein likhen"],
+["class","先生を見てください","استاد کی طرف دیکھیں","ustaad ki taraf dekhen"],
+["class","いっしょにやりましょう","آئیں، مل کر کرتے ہیں","aayen, mil kar karte hain"],
+["class","よくできました！","بہت اچھا! شاباش","bahut achha! shabaash"],
+["class","ちょっと待ってください","ذرا انتظار کریں","zara intezaar karen"],
+["class","ついてきてください","میرے ساتھ آئیں","mere saath aayen"],
+["class","次は体育です。服を着がえます。","اگلی کلاس کھیل کی ہے۔ کپڑے بدل لیں","agli class khel ki hai. kapde badal len"],
+["life","給食の時間です","دوپہر کے کھانے کا وقت ہے","dopahar ke khaane ka waqt hai"],
+["life","手を洗ってください","ہاتھ دھو لیں","haath dho len"],
+["life","これには豚肉が入っています","اس میں سور کا گوشت ہے","is mein soor ka gosht hai"],
+["life","これには豚肉は入っていません","اس میں سور کا گوشت نہیں ہے","is mein soor ka gosht nahin hai"],
+["life","これは食べられますか？","کیا آپ یہ کھا سکتے ہیں؟","kya aap yeh kha sakte hain?"],
+["life","そうじの時間です","صفائی کا وقت ہے","safai ka waqt hai"],
+["life","帰る時間です","گھر جانے کا وقت ہے","ghar jaane ka waqt hai"],
+["kid","トイレに行きたいです","مجھے باتھ روم جانا ہے","mujhe baathroom jaana hai"],
+["kid","わかりません","مجھے سمجھ نہیں آیا","mujhe samajh nahin aaya"],
+["kid","わかりました","مجھے سمجھ آ گیا","mujhe samajh aa gaya"],
+["kid","気分が悪いです","میری طبیعت ٹھیک نہیں ہے","meri tabiyat theek nahin hai"],
+["kid","頭が痛いです","میرے سر میں درد ہے","mere sar mein dard hai"],
+["kid","おなかが痛いです","میرے پیٹ میں درد ہے","mere pet mein dard hai"],
+["kid","水を飲みたいです","مجھے پانی پینا ہے","mujhe paani peena hai"],
+["kid","えんぴつがありません","میرے پاس پنسل نہیں ہے","mere paas pensil nahin hai"],
+["kid","もう一度言ってください","دوبارہ بتائیں","dobaara bataayen"],
+["kid","ゆっくり話してください","آہستہ بولیں","aahista bolen"],
+["kid","手伝ってください","میری مدد کریں","meri madad karen"],
+["kid","終わりました","میں نے ختم کر لیا","main ne khatam kar liya"],
+["kid","これは何ですか？","یہ کیا ہے؟","yeh kya hai?"],
+["kid","もういりません","بس، اور نہیں چاہیے","bas, aur nahin chahiye"],
+["kid","これを持っていません","میرے پاس یہ نہیں ہے","mere paas yeh nahin hai"],
+["subj","国語（日本語）","جاپانی زبان","jaapaani zabaan"],
+["subj","算数","ریاضی","riyazi"],
+["subj","理科","سائنس","science"],
+["subj","社会","معاشرتی علوم","muashrati uloom"],
+["subj","英語","انگریزی","angrezi"],
+["subj","音楽","موسیقی","mausiqi"],
+["subj","図工","ڈرائنگ اور دستکاری","drawing aur dastkari"],
+["subj","体育","کھیل اور ورزش","khel aur warzish"],
+["subj","道徳","اخلاقیات","akhlaqiyat"],
+["subj","家庭科","گھریلو امور","ghareloo umoor"],
+["item","明日、これを持ってきてください","کل یہ چیز لے کر آئیں","kal yeh cheez le kar aayen"],
+["item","教科書","کتاب","kitaab"],
+["item","ノート","کاپی","kaapi"],
+["item","えんぴつ","پنسل","pensil"],
+["item","消しゴム","ربڑ","rabar"],
+["item","筆箱","پنسل باکس","pensil box"],
+["item","定規","اسکیل","iskeil"],
+["item","色えんぴつ","رنگین پنسلیں","rangeen pensilen"],
+["item","はさみ","قینچی","qainchi"],
+["item","のり","گوند","gond"],
+["item","体操服","کھیل کے کپڑے","khel ke kapde"],
+["item","上ばき（校舎の中のくつ）","اندر پہننے والے جوتے","andar pehanne wale joote"],
+["item","水とう","پانی کی بوتل","paani ki botal"],
+["item","ランドセル","اسکول بیگ","school bag"],
+["item","連絡帳","رابطے کی ڈائری","raabte ki diary"],
+["item","タブレット","ٹیبلٹ","tablet"],
+["item","ハンカチ","رومال","roomaal"],
+["time","朝の会","صبح کی میٹنگ","subah ki meeting"],
+["time","1時間目","پہلا پیریڈ","pehla period"],
+["time","2時間目","دوسرا پیریڈ","doosra period"],
+["time","3時間目","تیسرا پیریڈ","teesra period"],
+["time","4時間目","چوتھا پیریڈ","chautha period"],
+["time","5時間目","پانچواں پیریڈ","paanchwaan period"],
+["time","6時間目","چھٹا پیریڈ","chhata period"],
+["time","休み時間","وقفہ","waqfa"],
+["time","帰りの会","چھٹی سے پہلے کی میٹنگ","chhutti se pehle ki meeting"],
+["time","今日","آج","aaj"],
+["time","明日","کل (آنے والا)","kal (aane wala)"],
+["time","月曜日","پیر","peer"],
+["time","火曜日","منگل","mangal"],
+["time","水曜日","بدھ","budh"],
+["time","木曜日","جمعرات","jumeraat"],
+["time","金曜日","جمعہ","juma"],
+["time","土曜日","ہفتہ","hafta"],
+["time","日曜日","اتوار","itwaar"],
+["time","明日は学校が休みです","کل اسکول کی چھٹی ہے","kal school ki chhutti hai"],
+["place","教室","کلاس روم","class room"],
+["place","トイレ","باتھ روم","baathroom"],
+["place","保健室","نرس کا کمرہ","nurse ka kamra"],
+["place","職員室","اساتذہ کا کمرہ","asaatiza ka kamra"],
+["place","体育館","جمنازیم","gymnasium"],
+["place","運動場","کھیل کا میدان","khel ka maidaan"],
+["place","図書室","لائبریری","library"],
+["place","音楽室","موسیقی کا کمرہ","mausiqi ka kamra"]
+].map(([c,ja,ur,rom])=>({c,ja,ur,rom}));
+
+const $=id=>document.getElementById(id);
+const ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7"/></svg>';
+let cat="all",dir="ja",mine=[];
+try{mine=JSON.parse(localStorage.getItem("urdu-mine")||"[]")}catch(e){mine=[]}
+function saveMine(){try{localStorage.setItem("urdu-mine",JSON.stringify(mine))}catch(e){}}
+
+function toast(t){const el=$("toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,3500)}
+const HAS_TTS="speechSynthesis" in window;
+let pref={ja:"",ur:"",rate:0.9};
+try{Object.assign(pref,JSON.parse(localStorage.getItem("urdu-voice")||"{}"))}catch(e){}
+function savePref(){try{localStorage.setItem("urdu-voice",JSON.stringify(pref))}catch(e){}}
+function score(v){const n=v.name;let s=0;if(/Natural|Neural/i.test(n))s+=6;if(/Online/i.test(n))s+=3;if(/Google/i.test(n))s+=2;if(!v.localService)s+=1;return s}
+function voicesFor(lang){if(!HAS_TTS)return[];return speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().replace("_","-").startsWith(lang)).sort((a,b)=>score(b)-score(a))}
+function pickVoice(lang){const vs=voicesFor(lang);return vs.find(v=>v.name===pref[lang])||vs[0]||null}
+function fillVoices(){
+  ["ja","ur"].forEach(lang=>{
+    const sel=$("v-"+lang),vs=voicesFor(lang),cur=pickVoice(lang);
+    sel.innerHTML=vs.length?vs.map(v=>`<option value="${esc(v.name)}"${cur&&v.name===cur.name?" selected":""}>${esc(v.name)}${score(v)>=6?"（自然）":""}</option>`).join(""):'<option value="">この端末には声がありません</option>';
+    sel.disabled=!vs.length;
+  });
+  const ur=pickVoice("ur"),ja=pickVoice("ja");
+  $("v-status").textContent=!HAS_TTS?"このブラウザは読み上げに対応していません。":
+    !ur?"この端末にはウルドゥー語の声がありません。各カードの「Google翻訳で聞く」を押し、開いた画面のスピーカーボタンで聞いてください。":
+    (score(ur)>=6&&ja&&score(ja)>=6)?"日本語・ウルドゥー語とも自然な声が使えます。":"自然な声（Natural）が一覧にあれば選んでください。";
+  if(typeof render.list!=="undefined")render();
+}
+function speak(text,lang){
+  if(!HAS_TTS){toast("この端末では読み上げが使えません");return}
+  const v=pickVoice(lang);
+  if(!v&&lang==="ur"){toast("この端末にウルドゥー語の音声がありません。Microsoft Edgeで開くか、Google翻訳の読み上げを使ってください");return}
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=v?v.lang:(lang==="ur"?"ur-PK":"ja-JP");if(v)u.voice=v;u.rate=pref.rate;speechSynthesis.speak(u);
+}
+if(HAS_TTS){speechSynthesis.getVoices();speechSynthesis.addEventListener("voiceschanged",fillVoices)}
+$("v-ja").onchange=e=>{pref.ja=e.target.value;savePref()};
+$("v-ur").onchange=e=>{pref.ur=e.target.value;savePref()};
+$("rate").value=pref.rate;$("rate-o").textContent=pref.rate;
+$("rate").oninput=e=>{pref.rate=+e.target.value;$("rate-o").textContent=pref.rate;savePref()};
+$("v-test-ja").onclick=()=>speak("おはようございます。きょうもいっしょにがんばりましょう。","ja");
+$("v-test-ur").onclick=()=>speak("صبح بخیر۔ آئیں، مل کر کرتے ہیں","ur");
+setTimeout(fillVoices,0);
+
+function renderTabs(){
+  const keys=["all",...Object.keys(CATS).filter(k=>k!=="mine"||mine.length)];
+  $("tabs").innerHTML=keys.map(k=>`<button class="seg" data-k="${k}" aria-pressed="${k===cat}">${k==="all"?"すべて":CATS[k]}</button>`).join("");
+}
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function gtUrl(t){return `https://translate.google.com/?sl=ur&tl=ja&text=${encodeURIComponent(t)}&op=translate`}
+function render(){
+  const q=$("q").value.trim();
+  const hasUr=!!pickVoice("ur");
+  const all=[...DATA,...mine.map((m,i)=>({...m,c:"mine",i}))];
+  const list=all.filter(p=>(cat==="all"||p.c===cat)&&(!q||p.ja.includes(q)||p.ur.includes(q)||(CATS[p.c]||"").includes(q)));
+  $("grid").innerHTML=list.length?list.map((p,n)=>`<div class="card${p.c==="kid"?" kid":""}">
+    <span class="tag">${CATS[p.c]}</span>
+    <div class="ja">${esc(p.ja)}</div>
+    <div class="ur">${esc(p.ur)}</div>
+    ${p.rom?`<div class="rom">${esc(p.rom)}</div>`:""}
+    <div class="acts">
+      <button class="show" data-a="show" data-n="${n}">大きく見せる</button>
+      ${hasUr?`<button data-a="ur" data-n="${n}">${ICON}ウルドゥー語</button>`:""}
+      <a class="btn gt" href="${gtUrl(p.ur)}" target="_blank" rel="noopener">${ICON}Google翻訳で聞く</a>
+      <button data-a="ja" data-n="${n}">${ICON}日本語</button>
+      ${p.c==="mine"?`<button class="del" data-a="del" data-i="${p.i}">削除</button>`:""}
+    </div></div>`).join(""):'<p class="hint">見つかりませんでした。上の「自由に翻訳する」を使ってください。</p>';
+  render.list=list;
+}
+let cur=null;
+$("grid").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;const p=render.list[b.dataset.n];
+  if(b.dataset.a==="show"){cur=p;$("ov-gt").href=gtUrl(p.ur);$("ov-say-ur").hidden=!pickVoice("ur");$("ov-ur").textContent=p.ur;$("ov-ja").textContent=p.ja;$("ov").hidden=false;$("ov-close").focus()}
+  else if(b.dataset.a==="ur")speak(p.ur,"ur");
+  else if(b.dataset.a==="ja")speak(p.ja,"ja");
+  else if(b.dataset.a==="del"){mine.splice(+b.dataset.i,1);saveMine();if(!mine.length&&cat==="mine")cat="all";renderTabs();render()}
+});
+$("tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cat=b.dataset.k;renderTabs();render()});
+$("q").addEventListener("input",render);
+$("ov-close").onclick=()=>{$("ov").hidden=true;speechSynthesis&&speechSynthesis.cancel()};
+$("ov-say-ur").onclick=()=>cur&&speak(cur.ur,"ur");
+$("ov-say-ja").onclick=()=>cur&&speak(cur.ja,"ja");
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("ov").hidden)$("ov-close").click()});
+
+function upd(){
+  const [sl,tl]=dir==="ja"?["ja","ur"]:["ur","ja"];
+  $("gt").href=`https://translate.google.com/?sl=${sl}&tl=${tl}&text=${encodeURIComponent($("src").value)}&op=translate`;
+  $("src").classList.toggle("ur",dir==="ur");
+  $("src").placeholder=dir==="ja"?"例：きょうは5時間目まで勉強します。":"اردو میں لکھیں";
+}
+function setDir(d){dir=d;$("d-ja").setAttribute("aria-pressed",d==="ja");$("d-ur").setAttribute("aria-pressed",d==="ur");upd()}
+$("d-ja").onclick=()=>setDir("ja");$("d-ur").onclick=()=>setDir("ur");
+$("src").addEventListener("input",upd);$("clr").onclick=()=>{$("src").value="";upd()};
+
+$("a-add").onclick=()=>{
+  const ja=$("a-ja").value.trim(),ur=$("a-ur").value.trim();
+  if(!ja||!ur){toast("日本語とウルドゥー語の両方を入力してください");return}
+  mine.push({ja,ur,rom:$("a-rom").value.trim()});saveMine();
+  ["a-ja","a-ur","a-rom"].forEach(i=>$(i).value="");cat="mine";renderTabs();render();toast("追加しました");
+};
+renderTabs();render();upd();
+</script>
+</body>
+</html>
