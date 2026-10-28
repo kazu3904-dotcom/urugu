@@ -60,6 +60,12 @@ details summary{cursor:pointer;font-weight:700}
 .addform{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 @media (max-width:560px){.addform{grid-template-columns:1fr}}
 .del{color:var(--muted)}
+.out{border:2px solid var(--accent);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:var(--accent-soft)}
+.out-main{font-size:1.6rem;font-weight:700;overflow-wrap:anywhere}
+.out-main.ur{font-size:2rem;font-weight:400;text-align:right}
+.out .rom{font-size:.9rem;color:var(--muted);font-style:italic}
+.out .back{font-size:.9rem;color:var(--muted)}
+.out .back span:last-child{color:var(--fg)}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .vf{display:flex;flex-direction:column;gap:4px;font-size:.88rem;font-weight:700;min-width:0}
 select{font:inherit;font-weight:400;width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--bg);color:var(--fg)}
@@ -87,17 +93,28 @@ input[type=range]{accent-color:var(--accent)}
   </section>
 
   <section class="panel" aria-labelledby="tr-h">
-    <h2 id="tr-h">自由に翻訳する（Google翻訳で開きます）</h2>
+    <h2 id="tr-h">自由に翻訳する</h2>
     <div class="dir" role="group" aria-label="翻訳の向き">
       <button class="seg" id="d-ja" aria-pressed="true">日本語 → ウルドゥー語</button>
       <button class="seg" id="d-ur" aria-pressed="false">ウルドゥー語 → 日本語</button>
     </div>
     <textarea id="src" placeholder="例：きょうは5時間目まで勉強します。"></textarea>
     <div class="row">
-      <a class="btn primary" id="gt" href="https://translate.google.com/?sl=ja&tl=ur&op=translate" target="_blank" rel="noopener">Google翻訳で開く</a>
+      <button class="primary" id="ai-go" hidden>翻訳する</button>
+      <a class="btn" id="gt" href="https://translate.google.com/?sl=ja&tl=ur&op=translate" target="_blank" rel="noopener">Google翻訳で開く</a>
       <button id="clr">消す</button>
     </div>
-    <p class="hint">短く、主語をはっきり書くと正確に訳されます。訳した文はウルドゥー語→日本語に戻して意味を確かめてください。名前など個人情報は入れないでください。</p>
+    <div class="out" id="out" hidden>
+      <div class="out-main" id="out-main"></div>
+      <div class="rom" id="out-rom"></div>
+      <div class="back"><span>日本語に戻すと：</span><span id="out-back"></span></div>
+      <div class="row">
+        <button id="out-say">読み上げ</button>
+        <button class="show" id="out-big">大きく見せる</button>
+        <button id="out-add">カードに追加</button>
+      </div>
+    </div>
+    <p class="hint">短く、主語をはっきり書くと正確に訳されます。訳した文はウルドゥー語→日本語に戻して意味を確かめてください。名前など個人情報は入れないでください。「翻訳する」はこのページの中で訳を表示します（初回は利用の許可を求められます）。</p>
   </section>
 
   <section class="panel" aria-labelledby="c-h">
@@ -322,7 +339,36 @@ function upd(){
 }
 function setDir(d){dir=d;$("d-ja").setAttribute("aria-pressed",d==="ja");$("d-ur").setAttribute("aria-pressed",d==="ur");upd()}
 $("d-ja").onclick=()=>setDir("ja");$("d-ur").onclick=()=>setDir("ur");
-$("src").addEventListener("input",upd);$("clr").onclick=()=>{$("src").value="";upd()};
+$("src").addEventListener("input",upd);$("clr").onclick=()=>{$("src").value="";$("out").hidden=true;upd()};
+
+let ai=null,last=null,busy=false;
+(async()=>{try{ai=window.claude?await window.claude.use("sample"):null}catch(e){ai=null}
+  if(ai){$("ai-go").hidden=false;$("gt").classList.remove("primary")}else{$("gt").classList.add("primary")}})();
+const ERR={not_granted:"翻訳の利用が許可されていません。Google翻訳で開いてください。",rate_limited:"少し時間をおいてからもう一度押してください。",invalid_json:"うまく翻訳できませんでした。もう一度押してください。"};
+$("ai-go").onclick=async()=>{
+  const text=$("src").value.trim();if(!text||busy||!ai)return;
+  busy=true;$("ai-go").textContent="翻訳中…";$("ai-go").disabled=true;
+  const toUr=dir==="ja";
+  const prompt=`You are a translator helping a Japanese elementary school teacher talk with a Pakistani child who speaks only Urdu.
+Translate the text below ${toUr?"from Japanese into simple, natural Urdu (Urdu script) that a child understands":"from Urdu into simple, natural Japanese"}.
+Return only JSON: {"translation": "...", "romanization": "${toUr?"Roman Urdu reading of the translation":"Roman Urdu reading of the original Urdu text"}", "back": "${toUr?"a literal Japanese back-translation of your Urdu":"the same Japanese, written with simple words"}"}
+Text:
+${text}`;
+  try{
+    const r=await ai.json(prompt,{modelTier:"default"});
+    last=toUr?{ja:text,ur:r.translation||"",rom:r.romanization||"",toUr}:{ja:r.translation||"",ur:text,rom:r.romanization||"",toUr};
+    const main=$("out-main");main.textContent=r.translation||"";main.classList.toggle("ur",toUr);
+    $("out-rom").textContent=r.romanization||"";$("out-back").textContent=r.back||"";
+    $("out-say").textContent=toUr?"ウルドゥー語で読み上げ":"日本語で読み上げ";
+    $("out").hidden=false;
+  }catch(e){toast(ERR[e&&e.code]||"翻訳できませんでした。Google翻訳で開いてください。")}
+  finally{busy=false;$("ai-go").textContent="翻訳する";$("ai-go").disabled=false}
+};
+$("out-say").onclick=()=>{if(!last)return;
+  if(last.toUr){if(pickVoice("ur"))speak(last.ur,"ur");else toast("この端末にはウルドゥー語の声がありません。「Google翻訳で開く」で聞いてください")}
+  else speak(last.ja,"ja")};
+$("out-big").onclick=()=>{if(!last)return;cur=last;$("ov-gt").href=gtUrl(last.ur);$("ov-say-ur").hidden=!pickVoice("ur");$("ov-ur").textContent=last.ur;$("ov-ja").textContent=last.ja;$("ov").hidden=false;$("ov-close").focus()};
+$("out-add").onclick=()=>{if(!last)return;mine.push({ja:last.ja,ur:last.ur,rom:last.rom});saveMine();cat="mine";renderTabs();render();toast("カードに追加しました")};
 
 $("a-add").onclick=()=>{
   const ja=$("a-ja").value.trim(),ur=$("a-ur").value.trim();
