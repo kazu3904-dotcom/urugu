@@ -6,150 +6,241 @@
 <style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
 <title>ウルドゥー語 教室カード</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap">
 <style>
-/* Layout: 上に翻訳ボックス、下にカテゴリ別の言葉カード（タップで大きく表示） */
+/* Layout: スマホは下タブで「カード／会話／声・追加」。会話は先生(右・緑)と児童(左・橙)の吹き出し、下にマイク2つと返事ボタン */
 :root{
   --bg:#f3f6f4; --surface:#ffffff; --fg:#17241f; --muted:#5b6b64; --line:#d9e2dd;
-  --accent:#0d6b4c; --accent-soft:#e1efe8; --on-accent:#ffffff; --kid:#9a5b10; --kid-soft:#f6ecdd;
+  --accent:#0d6b4c; --accent-soft:#e1efe8; --on-accent:#ffffff; --kid:#9a5b10; --kid-soft:#f6ecdd; --on-kid:#ffffff;
   --jp:"Zen Kaku Gothic New",system-ui,"Hiragino Sans","Yu Gothic",sans-serif;
   --ur:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting",serif;
+  --tabh:62px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#101714; --surface:#18221e; --fg:#e7efeb; --muted:#9db0a7; --line:#2b3a34;
-  --accent:#4fc69a; --accent-soft:#1c3a2f; --on-accent:#08241a; --kid:#e5a95a; --kid-soft:#3a2c18; color-scheme:dark}}
+  --accent:#4fc69a; --accent-soft:#1c3a2f; --on-accent:#08241a; --kid:#e5a95a; --kid-soft:#3a2c18; --on-kid:#2a1a05; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#101714; --surface:#18221e; --fg:#e7efeb; --muted:#9db0a7; --line:#2b3a34;
-  --accent:#4fc69a; --accent-soft:#1c3a2f; --on-accent:#08241a; --kid:#e5a95a; --kid-soft:#3a2c18; color-scheme:dark}
-body{background:var(--bg);color:var(--fg);font-family:var(--jp);font-size:16px;line-height:1.6}
-.wrap{max-width:1080px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
-header h1{font-size:1.6rem;font-weight:900;margin:0;text-wrap:balance}
-header p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
-.ur{font-family:var(--ur);direction:rtl;unicode-bidi:isolate;line-height:2.2}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
-.panel h2{font-size:1rem;margin:0}
-.dir{display:flex;gap:8px;flex-wrap:wrap}
-button,.btn{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 14px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-button:focus-visible,.btn:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.seg[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:700}
+  --accent:#4fc69a; --accent-soft:#1c3a2f; --on-accent:#08241a; --kid:#e5a95a; --kid-soft:#3a2c18; --on-kid:#2a1a05; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--jp);font-size:16px;line-height:1.6;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{max-width:1080px;margin:0 auto;padding-block:14px 4px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-sizing:border-box}
+.top h1{font-size:1.2rem;font-weight:900;margin:0;line-height:1.3;text-wrap:balance}
+.top .sub{display:none;margin:2px 0 0;color:var(--muted);font-size:.88rem}
+.wrap{max-width:1080px;margin:0 auto;box-sizing:border-box;padding-block:0 calc(var(--tabh) + 28px + env(safe-area-inset-bottom,0px))}
+.ur{font-family:var(--ur);direction:rtl;unicode-bidi:isolate;line-height:2.1}
+button,.btn{font:inherit;cursor:pointer;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:10px 16px;min-height:46px;box-sizing:border-box;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+button:focus-visible,.btn:focus-visible,textarea:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:700}
-textarea,input[type=text],input[type=search]{font:inherit;width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg);color:var(--fg)}
-textarea{min-height:84px;resize:vertical}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.hint{font-size:.82rem;color:var(--muted);margin:0}
-.tabs{display:flex;gap:8px;flex-wrap:wrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
-.card.kid{border-left:5px solid var(--kid)}
-.card .tag{font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
-.card.kid .tag{color:var(--kid)}
-.card .ja{font-weight:700;font-size:1.05rem}
-.card .ur{font-size:1.35rem;text-align:right}
-.card .rom{font-size:.8rem;color:var(--muted);font-style:italic}
-.card .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
-.card .acts button,.card .acts .btn{padding:5px 10px;font-size:.85rem}
-.gt{border-color:var(--accent);color:var(--accent)}
-.show{background:var(--accent-soft);border-color:transparent}
-svg{width:16px;height:16px;flex:none}
-.overlay{position:fixed;inset:0;background:var(--surface);z-index:20;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:24px;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));text-align:center}
-.overlay .big{font-size:clamp(2.2rem,8vw,5rem);max-width:95%}
-.overlay .bja{font-size:clamp(1.2rem,4vw,2rem);font-weight:700;color:var(--muted)}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:.9rem;z-index:30;max-width:90%}
-details summary{cursor:pointer;font-weight:700}
-.addform{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-@media (max-width:560px){.addform{grid-template-columns:1fr}}
-.del{color:var(--muted)}
-.out{border:2px solid var(--accent);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:var(--accent-soft)}
-.out-main{font-size:1.6rem;font-weight:700;overflow-wrap:anywhere}
-.out-main.ur{font-size:2rem;font-weight:400;text-align:right}
-.out .rom{font-size:.9rem;color:var(--muted);font-style:italic}
-.out .back{font-size:.9rem;color:var(--muted)}
-.out .back span:last-child{color:var(--fg)}
-.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.btn svg,button svg{width:18px;height:18px;flex:none}
+input[type=text],input[type=search],select{font:inherit;font-size:16px;width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:var(--surface);color:var(--fg)}
+.hint{font-size:.84rem;color:var(--muted);margin:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.panel h2{font-size:1.02rem;margin:0}
+.panel input[type=text],.panel select{background:var(--bg)}
+.stack{display:flex;flex-direction:column;gap:14px}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* tabs */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+.tab{border:0;border-radius:0;background:none;flex-direction:column;gap:2px;height:var(--tabh);min-height:0;padding:0;font-size:.78rem;color:var(--muted)}
+.tab svg{width:24px;height:24px}
+.tab[aria-current="page"]{color:var(--accent);font-weight:700}
+
+/* cards view */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px 10px;display:flex;flex-direction:column;gap:8px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar,.quick::-webkit-scrollbar{display:none}
+.chip{flex:none;border-radius:999px;min-height:40px;padding:6px 14px;white-space:nowrap;font-size:.92rem}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:700}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.8rem;color:var(--muted)}
+.list{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.grp{grid-column:1/-1;margin:12px 0 0;font-size:.82rem;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.grp:first-child{margin-top:0}
+.item{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);grid-template-areas:"ja ur" "rom ur";column-gap:12px;align-items:center;justify-content:stretch;text-align:left;width:100%;padding:8px 14px;min-height:66px;border-radius:12px}
+.item .ja{grid-area:ja;font-weight:700;line-height:1.4;align-self:end}
+.item .rom{grid-area:rom;font-size:.76rem;color:var(--muted);font-style:italic;line-height:1.35;align-self:start;overflow-wrap:anywhere}
+.item .ur{grid-area:ur;text-align:right;font-size:1.22rem;line-height:1.95}
+.item.kid{border-left:5px solid var(--kid);padding-left:10px}
+.item:active{background:var(--accent-soft)}
+.empty{grid-column:1/-1;text-align:center;padding:24px 8px;display:flex;flex-direction:column;gap:12px;align-items:center}
+@media (max-width:340px){.item{grid-template-columns:minmax(0,1fr);grid-template-areas:"ja" "ur" "rom"}.item .ur{text-align:left}}
+
+/* conversation view */
+.convbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:6px 10px}
+.convbar button{min-height:38px;padding:4px 12px;font-size:.85rem}
+.conv-log{display:flex;flex-direction:column;gap:10px;padding-bottom:calc(var(--comph,210px) + 12px)}
+.intro{display:flex;flex-direction:column;gap:10px}
+.intro ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px;font-size:.92rem}
+.msg{max-width:92%;border-radius:16px;padding:10px 14px;display:flex;flex-direction:column;gap:4px;min-width:0;box-sizing:border-box}
+.msg.t{align-self:flex-end;background:var(--accent-soft);border-bottom-right-radius:4px}
+.msg.k{align-self:flex-start;background:var(--kid-soft);border-bottom-left-radius:4px}
+.who{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--muted)}
+.mmain{font-size:1.15rem;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
+.mmain.ur{font-weight:400;font-size:1.5rem;line-height:2.1;text-align:right}
+.latest .mmain{font-size:1.4rem}
+.latest .mmain.ur{font-size:1.95rem}
+.msub{font-size:.9rem;color:var(--muted);overflow-wrap:anywhere}
+.msub.ur{text-align:right;line-height:2;font-size:1.05rem}
+.mrom{font-size:.78rem;font-style:italic;color:var(--muted);overflow-wrap:anywhere}
+.mback{font-size:.8rem;color:var(--muted)}
+.pending{color:var(--muted);font-size:.9rem}
+.merr{color:var(--kid);font-size:.9rem;font-weight:700}
+.macts{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.macts button,.macts .btn{min-height:40px;padding:6px 12px;font-size:.85rem}
+.composer{position:fixed;left:0;right:0;bottom:calc(var(--tabh) + env(safe-area-inset-bottom,0px));z-index:14;background:var(--bg);border-top:1px solid var(--line);padding-block:8px 10px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box}
+.quick{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.qr{flex:none;min-height:46px;padding:0 12px;border-radius:999px;flex-direction:column;gap:0;line-height:1.15;background:var(--kid-soft);border-color:transparent}
+.qr .ur{font-size:1rem;line-height:1.75}
+.qr small{font-size:.68rem;color:var(--muted)}
+.mics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mic{min-height:58px;font-weight:700;font-size:1rem;border:0;flex-direction:column;gap:0;line-height:1.3}
+.mic svg{width:22px;height:22px}
+.mic .lab{display:flex;align-items:center;gap:6px}
+.mic small{font-size:.7rem;font-weight:400;opacity:.85}
+.mic.t{background:var(--accent);color:var(--on-accent)}
+.mic.k{background:var(--kid);color:var(--on-kid)}
+.mic.k .ur{font-size:1rem;line-height:1.6}
+.mic[aria-pressed="true"]{box-shadow:0 0 0 3px var(--bg),0 0 0 6px var(--fg);animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 3px var(--bg),0 0 0 9px var(--fg)}}
+.tline{display:flex;gap:8px}
+.tline input{flex:1;min-width:0;min-height:46px}
+.send{width:52px;padding:0;flex:none}
+
+/* settings view */
 .vf{display:flex;flex-direction:column;gap:4px;font-size:.88rem;font-weight:700;min-width:0}
-select{font:inherit;font-weight:400;width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--bg);color:var(--fg)}
-input[type=range]{accent-color:var(--accent)}
+.chk{display:flex;align-items:center;gap:10px;font-size:.95rem;min-height:44px}
+.chk input{width:22px;height:22px;accent-color:var(--accent)}
+input[type=range]{accent-color:var(--accent);width:100%;min-height:32px}
+
+/* overlay */
+.overlay{position:fixed;inset:0;z-index:20;background:var(--surface);display:flex;flex-direction:column;gap:12px;box-sizing:border-box;padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.ov-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ov-cat{font-size:.82rem;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.x{width:48px;height:48px;padding:0;border-radius:999px}
+.x svg{width:22px;height:22px}
+.ov-body{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;text-align:center}
+.big{font-size:clamp(2.1rem,9vw,4.6rem);line-height:2;max-width:100%;overflow-wrap:anywhere}
+.bja{font-size:clamp(1.3rem,5.4vw,2.1rem);font-weight:700;line-height:1.4}
+.brom{font-size:clamp(.95rem,3.6vw,1.2rem);color:var(--muted);font-style:italic}
+.ov-acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%;max-width:640px;margin:0 auto}
+.ov-acts>*{min-height:54px}
+.ov-acts .wide{grid-column:1/-1}
+.del{color:var(--muted)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--tabh) + 14px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:.9rem;z-index:30;max-width:calc(100% - 32px);box-sizing:border-box}
+body.conv .toast{bottom:calc(var(--tabh) + var(--comph,210px) + 10px + env(safe-area-inset-bottom,0px))}
+
+@media (min-width:760px){
+  .top{padding-block:22px 10px}
+  .top h1{font-size:1.6rem}
+  .top .sub{display:block}
+  .tabbar{position:static;display:flex;gap:6px;background:none;border:0;padding:0}
+  .tab{flex-direction:row;height:auto;min-height:44px;padding:8px 16px;border-radius:12px;font-size:.95rem;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+  .tab svg{width:18px;height:18px}
+  .tab[aria-current="page"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .wrap{padding-block:4px 48px}
+  .chips{flex-wrap:wrap;overflow:visible}
+  .list{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .toast,body.conv .toast{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .stack{max-width:720px}
+  #view-conv{max-width:760px;margin:0 auto}
+  .msg{max-width:78%}
+  .conv-log{padding-bottom:16px}
+  .composer{position:sticky;bottom:0;border-top:1px solid var(--line)}
+  .composer.gut{padding-left:0;padding-right:0}
+  .quick{flex-wrap:wrap;overflow:visible}
+}
+@media (prefers-reduced-motion:reduce){.mic[aria-pressed="true"]{animation:none}}
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header>
+<header class="top gut">
+  <div>
     <h1>ウルドゥー語 教室カード</h1>
-    <p>اردو ↔ 日本語　よく使う言葉をタップで大きく見せたり、読み上げたりできます。</p>
-  </header>
+    <p class="sub"><span class="ur">اردو</span> ↔ 日本語　言葉カードと会話の通訳</p>
+  </div>
+  <nav class="tabbar" aria-label="画面の切りかえ">
+    <button class="tab" data-v="cards" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/></svg>カード</button>
+    <button class="tab" data-v="conv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h11v8H8l-3 3v-3H3z"/><path d="M14 9h7v8h-2v3l-3-3h-5v-4"/></svg>会話</button>
+    <button class="tab" data-v="set"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>声・追加</button>
+  </nav>
+</header>
 
-  <section class="panel" aria-labelledby="v-h">
-    <h2 id="v-h">読み上げの声</h2>
-    <div class="vgrid">
+<main class="wrap gut">
+  <section id="view-cards" aria-label="言葉カード">
+    <div class="bar">
+      <input type="search" id="q" placeholder="さがす（例：トイレ、給食）" aria-label="言葉をさがす">
+      <div class="chips" id="chips" role="group" aria-label="カテゴリ"></div>
+      <div class="meta"><span id="count"></span><span>タップで大きく表示・読み上げ</span></div>
+    </div>
+    <div class="list" id="grid"></div>
+    <p class="hint" style="margin-top:16px">ウルドゥー語の訳は、お兄さんに確認してもらってから使ってください。</p>
+  </section>
+
+  <section id="view-conv" hidden aria-label="会話">
+    <div class="convbar"><span class="hint">先生は右、児童は左に出ます</span><button id="conv-clear">会話を消す</button></div>
+    <div class="conv-log" id="log"></div>
+    <div class="composer gut" id="composer">
+      <div class="quick" id="quick" role="group" aria-label="児童の返事"></div>
+      <div class="mics">
+        <button class="mic t" id="mic-t" aria-pressed="false"><span class="lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span id="mic-t-l">日本語で話す</span></span><small>先生</small></button>
+        <button class="mic k" id="mic-k" aria-pressed="false"><span class="lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span class="ur" id="mic-k-l">اردو میں بولیں</span></span><small>児童</small></button>
+      </div>
+      <form class="tline" id="tline">
+        <input type="text" id="cin" placeholder="文字で入力（日本語・ウルドゥー語）" aria-label="文字で入力" autocomplete="off">
+        <button class="send primary" type="submit" aria-label="訳す"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+      </form>
+    </div>
+  </section>
+
+  <section id="view-set" class="stack" hidden aria-label="声とカードの追加">
+    <div class="panel">
+      <h2>読み上げ</h2>
+      <p class="hint" id="v-status"></p>
+      <label class="chk"><input type="checkbox" id="auto"> 会話で訳したら自動で読み上げる</label>
       <label class="vf"><span>日本語の声</span><select id="v-ja"></select></label>
       <label class="vf"><span>ウルドゥー語の声</span><select id="v-ur"></select></label>
-      <label class="vf"><span>速さ <output id="rate-o">0.9</output></span><input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.9"></label>
+      <label class="vf"><span>速さ（端末の声のとき） <output id="rate-o">0.9</output></span><input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.9"></label>
+      <div class="acts"><button id="v-test-ja">日本語を試す</button><button id="v-test-ur">ウルドゥー語を試す</button></div>
+      <p class="hint">端末にウルドゥー語の声がないときは、Googleの音声で読み上げます（インターネット接続が必要）。</p>
     </div>
-    <div class="row"><button id="v-test-ja">日本語を試す</button><button id="v-test-ur">ウルドゥー語を試す</button></div>
-    <p class="hint" id="v-status"></p>
-    <p class="hint">「Natural」「Online」と付いた声がいちばん自然です。WindowsやChromebookでは Microsoft Edge でこのページを開くと、日本語・ウルドゥー語とも自然な声が選べることが多いです（インターネット接続が必要）。</p>
-  </section>
-
-  <section class="panel" aria-labelledby="tr-h">
-    <h2 id="tr-h">自由に翻訳する</h2>
-    <div class="dir" role="group" aria-label="翻訳の向き">
-      <button class="seg" id="d-ja" aria-pressed="true">日本語 → ウルドゥー語</button>
-      <button class="seg" id="d-ur" aria-pressed="false">ウルドゥー語 → 日本語</button>
+    <div class="panel">
+      <h2>カードを追加する</h2>
+      <p class="hint">この端末のブラウザだけに保存されます。会話の吹き出しからも追加できます。</p>
+      <input type="text" id="a-ja" placeholder="日本語" aria-label="日本語">
+      <input type="text" id="a-ur" class="ur" placeholder="اردو" aria-label="ウルドゥー語">
+      <input type="text" id="a-rom" placeholder="読み方（ローマ字・任意）" aria-label="読み方">
+      <button class="primary" id="a-add">追加する</button>
     </div>
-    <textarea id="src" placeholder="例：きょうは5時間目まで勉強します。"></textarea>
-    <div class="row">
-      <button class="primary" id="ai-go" hidden>翻訳する</button>
-      <a class="btn" id="gt" href="https://translate.google.com/?sl=ja&tl=ur&op=translate" target="_blank" rel="noopener">Google翻訳で開く</a>
-      <button id="clr">消す</button>
+    <div class="panel">
+      <h2>このアプリについて</h2>
+      <p class="hint">会話の翻訳と音声には、Google翻訳の非公式な仕組みを使っています。止まった場合は、カードと「Google翻訳で聞く」を使ってください。名前など個人情報は話したり入力したりしないでください。会話はこの画面を閉じると消えます。</p>
     </div>
-    <div class="out" id="out" hidden>
-      <div class="out-main" id="out-main"></div>
-      <div class="rom" id="out-rom"></div>
-      <div class="back"><span>日本語に戻すと：</span><span id="out-back"></span></div>
-      <div class="row">
-        <button id="out-say">読み上げ</button>
-        <button class="show" id="out-big">大きく見せる</button>
-        <button id="out-add">カードに追加</button>
-      </div>
-    </div>
-    <p class="hint">短く、主語をはっきり書くと正確に訳されます。訳した文はウルドゥー語→日本語に戻して意味を確かめてください。名前など個人情報は入れないでください。「翻訳する」はこのページの中で訳を表示します（初回は利用の許可を求められます）。</p>
   </section>
-
-  <section class="panel" aria-labelledby="c-h">
-    <h2 id="c-h">言葉カード</h2>
-    <input type="search" id="q" placeholder="さがす（例：トイレ、給食）">
-    <div class="tabs" id="tabs" role="group" aria-label="カテゴリ"></div>
-    <div class="grid" id="grid"></div>
-    <p class="hint">ウルドゥー語の訳は事前にお兄さんに確認してもらってから使ってください。読み上げは端末にウルドゥー語の音声がある場合のみ使えます。</p>
-  </section>
-
-  <section class="panel">
-    <details>
-      <summary>カードを自分で追加する</summary>
-      <p class="hint">Google翻訳などで訳した文を登録できます（この端末のブラウザだけに保存されます）。</p>
-      <div class="addform">
-        <input type="text" id="a-ja" placeholder="日本語">
-        <input type="text" id="a-ur" class="ur" placeholder="اردو">
-        <input type="text" id="a-rom" placeholder="読み方（任意）">
-        <button class="primary" id="a-add">追加する</button>
-      </div>
-    </details>
-  </section>
-</div>
+</main>
 
 <div class="overlay" id="ov" hidden role="dialog" aria-modal="true" aria-label="大きく表示">
-  <div class="big ur" id="ov-ur"></div>
-  <div class="bja" id="ov-ja"></div>
-  <div class="row" style="justify-content:center">
-    <button id="ov-say-ur">ウルドゥー語で読む</button>
-    <a class="btn" id="ov-gt" href="https://translate.google.com/" target="_blank" rel="noopener">Google翻訳で聞く</a>
+  <div class="ov-top">
+    <span class="ov-cat" id="ov-cat"></span>
+    <button class="x" id="ov-close" aria-label="とじる"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="ov-body">
+    <div class="big ur" id="ov-ur"></div>
+    <div class="bja" id="ov-ja"></div>
+    <div class="brom" id="ov-rom"></div>
+  </div>
+  <div class="ov-acts">
+    <button class="primary wide" id="ov-say-ur">ウルドゥー語で読む</button>
     <button id="ov-say-ja">日本語で読む</button>
-    <button class="primary" id="ov-close">とじる</button>
+    <a class="btn" id="ov-gt" href="https://translate.google.com/" target="_blank" rel="noopener">Google翻訳で聞く</a>
+    <button class="del wide" id="ov-del">このカードを削除</button>
   </div>
 </div>
-<div class="toast" id="toast" hidden></div>
+<div class="toast" id="toast" hidden role="status"></div>
 
 <script>
 const CATS={greet:"あいさつ",class:"授業",life:"生活・給食",kid:"児童から伝える",subj:"教科",item:"持ち物",time:"時間割・曜日",place:"学校の場所",mine:"追加したカード"};
@@ -251,132 +342,241 @@ const DATA=[
 ].map(([c,ja,ur,rom])=>({c,ja,ur,rom}));
 
 const $=id=>document.getElementById(id);
-const ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7"/></svg>';
-let cat="all",dir="ja",mine=[];
+const SPK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
+let cat="all",mine=[],cur=null,lastFocus=null;
 try{mine=JSON.parse(localStorage.getItem("urdu-mine")||"[]")}catch(e){mine=[]}
 function saveMine(){try{localStorage.setItem("urdu-mine",JSON.stringify(mine))}catch(e){}}
+function toast(t){const el=$("toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,4000)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function gtUrl(t,sl="ur",tl="ja"){return `https://translate.google.com/?sl=${sl}&tl=${tl}&text=${encodeURIComponent(t)}&op=translate`}
 
-function toast(t){const el=$("toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,3500)}
+/* ---------- voices ---------- */
 const HAS_TTS="speechSynthesis" in window;
-let pref={ja:"",ur:"",rate:0.9};
+let pref={ja:"",ur:"",rate:0.9,auto:true};
 try{Object.assign(pref,JSON.parse(localStorage.getItem("urdu-voice")||"{}"))}catch(e){}
 function savePref(){try{localStorage.setItem("urdu-voice",JSON.stringify(pref))}catch(e){}}
-function score(v){const n=v.name;let s=0;if(/Natural|Neural/i.test(n))s+=6;if(/Online/i.test(n))s+=3;if(/Google/i.test(n))s+=2;if(!v.localService)s+=1;return s}
+function score(v){const n=v.name;let s=0;if(/Natural|Neural|Enhanced|Premium/i.test(n))s+=6;if(/Online/i.test(n))s+=3;if(/Google/i.test(n))s+=2;if(!v.localService)s+=1;return s}
 function voicesFor(lang){if(!HAS_TTS)return[];return speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().replace("_","-").startsWith(lang)).sort((a,b)=>score(b)-score(a))}
 function pickVoice(lang){const vs=voicesFor(lang);return vs.find(v=>v.name===pref[lang])||vs[0]||null}
 function fillVoices(){
   ["ja","ur"].forEach(lang=>{
-    const sel=$("v-"+lang),vs=voicesFor(lang),cur=pickVoice(lang);
-    sel.innerHTML=vs.length?vs.map(v=>`<option value="${esc(v.name)}"${cur&&v.name===cur.name?" selected":""}>${esc(v.name)}${score(v)>=6?"（自然）":""}</option>`).join(""):'<option value="">この端末には声がありません</option>';
+    const sel=$("v-"+lang),vs=voicesFor(lang),c=pickVoice(lang);
+    sel.innerHTML=vs.length?vs.map(v=>`<option value="${esc(v.name)}"${c&&v.name===c.name?" selected":""}>${esc(v.name)}${score(v)>=6?"（自然）":""}</option>`).join(""):'<option value="">この端末には声がありません（Googleの音声を使います）</option>';
     sel.disabled=!vs.length;
   });
-  const ur=pickVoice("ur"),ja=pickVoice("ja");
-  $("v-status").textContent=!HAS_TTS?"このブラウザは読み上げに対応していません。":
-    !ur?"この端末にはウルドゥー語の声がありません。各カードの「Google翻訳で聞く」を押し、開いた画面のスピーカーボタンで聞いてください。":
-    (score(ur)>=6&&ja&&score(ja)>=6)?"日本語・ウルドゥー語とも自然な声が使えます。":"自然な声（Natural）が一覧にあれば選んでください。";
-  if(typeof render.list!=="undefined")render();
+  $("v-status").textContent=!pickVoice("ur")?"この端末にはウルドゥー語の声がないので、Googleの音声で読み上げます。":"ウルドゥー語は端末の声で読み上げます。";
 }
-function speak(text,lang){
-  if(!HAS_TTS){toast("この端末では読み上げが使えません");return}
+/* Google voice (unofficial) for languages the device lacks */
+const player=new Audio();let ttsQ=[],ttsAuto=false;
+function chunks(t){const parts=String(t).split(/(?<=[۔.!?؟،、。,\n])/);const out=[];let b="";
+  for(const p of parts){if((b+p).length>180){if(b)out.push(b);b=p.slice(0,180)}else b+=p}if(b.trim())out.push(b);return out}
+function playGoogle(text,lang,auto){
+  stopAll();ttsAuto=!!auto;
+  ttsQ=chunks(text).map(c=>`https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${lang}&q=${encodeURIComponent(c)}`);
+  nextTts();
+}
+function nextTts(){const u=ttsQ.shift();if(!u)return;player.src=u;
+  player.play().catch(e=>{ttsQ=[];if(e&&e.name==="NotAllowedError"){if(!ttsAuto)toast("もう一度「読む」を押してください")}else ttsFail()})}
+player.onended=nextTts;
+player.onerror=()=>{if(player.src&&player.src.startsWith("http")){ttsQ=[];ttsFail()}};
+let ttsWarned=false;
+function ttsFail(){if(ttsAuto&&ttsWarned)return;ttsWarned=true;toast("音声を再生できませんでした。大きく表示の「Google翻訳で聞く」を使ってください")}
+function stopAll(){ttsQ=[];try{player.pause()}catch(e){}if(HAS_TTS)speechSynthesis.cancel()}
+function speak(text,lang,auto){
   const v=pickVoice(lang);
-  if(!v&&lang==="ur"){toast("この端末にウルドゥー語の音声がありません。Microsoft Edgeで開くか、Google翻訳の読み上げを使ってください");return}
-  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=v?v.lang:(lang==="ur"?"ur-PK":"ja-JP");if(v)u.voice=v;u.rate=pref.rate;speechSynthesis.speak(u);
+  if(!v){playGoogle(text,lang,auto);return}
+  stopAll();const u=new SpeechSynthesisUtterance(text);u.lang=v.lang;u.voice=v;u.rate=pref.rate;speechSynthesis.speak(u);
 }
 if(HAS_TTS){speechSynthesis.getVoices();speechSynthesis.addEventListener("voiceschanged",fillVoices)}
 $("v-ja").onchange=e=>{pref.ja=e.target.value;savePref()};
 $("v-ur").onchange=e=>{pref.ur=e.target.value;savePref()};
 $("rate").value=pref.rate;$("rate-o").textContent=pref.rate;
 $("rate").oninput=e=>{pref.rate=+e.target.value;$("rate-o").textContent=pref.rate;savePref()};
+$("auto").checked=pref.auto;$("auto").onchange=e=>{pref.auto=e.target.checked;savePref()};
 $("v-test-ja").onclick=()=>speak("おはようございます。きょうもいっしょにがんばりましょう。","ja");
 $("v-test-ur").onclick=()=>speak("صبح بخیر۔ آئیں، مل کر کرتے ہیں","ur");
-setTimeout(fillVoices,0);
 
-function renderTabs(){
-  const keys=["all",...Object.keys(CATS).filter(k=>k!=="mine"||mine.length)];
-  $("tabs").innerHTML=keys.map(k=>`<button class="seg" data-k="${k}" aria-pressed="${k===cat}">${k==="all"?"すべて":CATS[k]}</button>`).join("");
+/* ---------- views ---------- */
+function showView(v){
+  ["cards","conv","set"].forEach(k=>{$("view-"+k).hidden=k!==v});
+  document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-current",b.dataset.v===v?"page":"false"));
+  document.body.classList.toggle("conv",v==="conv");
+  if(v==="conv"){measure();scrollEnd()}else window.scrollTo(0,0);
 }
-function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function gtUrl(t){return `https://translate.google.com/?sl=ur&tl=ja&text=${encodeURIComponent(t)}&op=translate`}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>showView(b.dataset.v));
+
+/* ---------- cards ---------- */
+function renderChips(){
+  const keys=["all",...Object.keys(CATS).filter(k=>k!=="mine"||mine.length)];
+  $("chips").innerHTML=keys.map(k=>`<button class="chip" data-k="${k}" aria-pressed="${k===cat}">${k==="all"?"すべて":CATS[k]}</button>`).join("");
+}
 function render(){
   const q=$("q").value.trim();
-  const hasUr=!!pickVoice("ur");
   const all=[...DATA,...mine.map((m,i)=>({...m,c:"mine",i}))];
-  const list=all.filter(p=>(cat==="all"||p.c===cat)&&(!q||p.ja.includes(q)||p.ur.includes(q)||(CATS[p.c]||"").includes(q)));
-  $("grid").innerHTML=list.length?list.map((p,n)=>`<div class="card${p.c==="kid"?" kid":""}">
-    <span class="tag">${CATS[p.c]}</span>
-    <div class="ja">${esc(p.ja)}</div>
-    <div class="ur">${esc(p.ur)}</div>
-    ${p.rom?`<div class="rom">${esc(p.rom)}</div>`:""}
-    <div class="acts">
-      <button class="show" data-a="show" data-n="${n}">大きく見せる</button>
-      ${hasUr?`<button data-a="ur" data-n="${n}">${ICON}ウルドゥー語</button>`:""}
-      <a class="btn gt" href="${gtUrl(p.ur)}" target="_blank" rel="noopener">${ICON}Google翻訳で聞く</a>
-      <button data-a="ja" data-n="${n}">${ICON}日本語</button>
-      ${p.c==="mine"?`<button class="del" data-a="del" data-i="${p.i}">削除</button>`:""}
-    </div></div>`).join(""):'<p class="hint">見つかりませんでした。上の「自由に翻訳する」を使ってください。</p>';
+  const list=all.filter(p=>(cat==="all"||p.c===cat)&&(!q||p.ja.includes(q)||p.ur.includes(q)||(p.rom||"").toLowerCase().includes(q.toLowerCase())||(CATS[p.c]||"").includes(q)));
   render.list=list;
+  $("count").textContent=`${list.length}件`;
+  if(!list.length){$("grid").innerHTML='<div class="empty"><p class="hint">見つかりませんでした。</p><button class="primary" id="go-conv">会話画面で訳す</button></div>';
+    $("go-conv").onclick=()=>{$("cin").value=q;showView("conv");$("cin").focus()};return}
+  const grouped=cat==="all"&&!q;let prev=null,html="";
+  list.forEach((p,n)=>{
+    if(grouped&&p.c!==prev){html+=`<h3 class="grp">${CATS[p.c]}</h3>`;prev=p.c}
+    html+=`<button class="item${p.c==="kid"?" kid":""}" data-n="${n}"><span class="ja">${esc(p.ja)}</span><span class="ur">${esc(p.ur)}</span>${p.rom?`<span class="rom">${esc(p.rom)}</span>`:""}</button>`;
+  });
+  $("grid").innerHTML=html;
 }
-let cur=null;
-$("grid").addEventListener("click",e=>{
-  const b=e.target.closest("button");if(!b)return;const p=render.list[b.dataset.n];
-  if(b.dataset.a==="show"){cur=p;$("ov-gt").href=gtUrl(p.ur);$("ov-say-ur").hidden=!pickVoice("ur");$("ov-ur").textContent=p.ur;$("ov-ja").textContent=p.ja;$("ov").hidden=false;$("ov-close").focus()}
-  else if(b.dataset.a==="ur")speak(p.ur,"ur");
-  else if(b.dataset.a==="ja")speak(p.ja,"ja");
-  else if(b.dataset.a==="del"){mine.splice(+b.dataset.i,1);saveMine();if(!mine.length&&cat==="mine")cat="all";renderTabs();render()}
-});
-$("tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cat=b.dataset.k;renderTabs();render()});
+function openCard(p){
+  cur=p;lastFocus=document.activeElement;
+  $("ov-cat").textContent=p.c?CATS[p.c]:"会話";
+  $("ov-ur").textContent=p.ur;$("ov-ja").textContent=p.ja;$("ov-rom").textContent=p.rom||"";
+  $("ov-gt").href=gtUrl(p.ur);
+  $("ov-del").hidden=p.c!=="mine";
+  $("ov").hidden=false;document.body.style.overflow="hidden";$("ov-close").focus();
+}
+function closeCard(){
+  $("ov").hidden=true;document.body.style.overflow="";stopAll();
+  if(lastFocus&&lastFocus.focus)lastFocus.focus();
+}
+$("grid").addEventListener("click",e=>{const b=e.target.closest(".item");if(b)openCard(render.list[b.dataset.n])});
+$("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;cat=b.dataset.k;renderChips();render();window.scrollTo(0,0)});
 $("q").addEventListener("input",render);
-$("ov-close").onclick=()=>{$("ov").hidden=true;speechSynthesis&&speechSynthesis.cancel()};
+$("ov-close").onclick=closeCard;
 $("ov-say-ur").onclick=()=>cur&&speak(cur.ur,"ur");
 $("ov-say-ja").onclick=()=>cur&&speak(cur.ja,"ja");
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("ov").hidden)$("ov-close").click()});
+$("ov-del").onclick=()=>{if(!cur||cur.c!=="mine")return;mine.splice(cur.i,1);saveMine();if(!mine.length&&cat==="mine")cat="all";closeCard();renderChips();render();toast("削除しました")};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("ov").hidden)closeCard()});
 
-function upd(){
-  const [sl,tl]=dir==="ja"?["ja","ur"]:["ur","ja"];
-  $("gt").href=`https://translate.google.com/?sl=${sl}&tl=${tl}&text=${encodeURIComponent($("src").value)}&op=translate`;
-  $("src").classList.toggle("ur",dir==="ur");
-  $("src").placeholder=dir==="ja"?"例：きょうは5時間目まで勉強します。":"اردو میں لکھیں";
+/* ---------- translation ---------- */
+let ai=null;
+(async()=>{try{ai=window.claude?await window.claude.use("sample"):null}catch(e){ai=null}})();
+async function gtx(text,sl,tl){
+  const url=`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&dt=rm&q=${encodeURIComponent(text)}`;
+  const res=await fetch(url,{referrerPolicy:"no-referrer"});
+  if(!res.ok)throw new Error("http "+res.status);
+  const d=await res.json();let out="",rom="",srcRom="";
+  for(const s of (d&&d[0])||[]){if(s[0]!=null)out+=s[0];else{if(s[2])rom+=s[2];if(s[3])srcRom+=s[3]}}
+  if(!out)throw new Error("empty");
+  return {text:out,rom,srcRom};
 }
-function setDir(d){dir=d;$("d-ja").setAttribute("aria-pressed",d==="ja");$("d-ur").setAttribute("aria-pressed",d==="ur");upd()}
-$("d-ja").onclick=()=>setDir("ja");$("d-ur").onclick=()=>setDir("ur");
-$("src").addEventListener("input",upd);$("clr").onclick=()=>{$("src").value="";$("out").hidden=true;upd()};
-
-let ai=null,last=null,busy=false;
-(async()=>{try{ai=window.claude?await window.claude.use("sample"):null}catch(e){ai=null}
-  if(ai){$("ai-go").hidden=false;$("gt").classList.remove("primary")}else{$("gt").classList.add("primary")}})();
-const ERR={not_granted:"翻訳の利用が許可されていません。Google翻訳で開いてください。",rate_limited:"少し時間をおいてからもう一度押してください。",invalid_json:"うまく翻訳できませんでした。もう一度押してください。"};
-$("ai-go").onclick=async()=>{
-  const text=$("src").value.trim();if(!text||busy||!ai)return;
-  busy=true;$("ai-go").textContent="翻訳中…";$("ai-go").disabled=true;
-  const toUr=dir==="ja";
-  const prompt=`You are a translator helping a Japanese elementary school teacher talk with a Pakistani child who speaks only Urdu.
-Translate the text below ${toUr?"from Japanese into simple, natural Urdu (Urdu script) that a child understands":"from Urdu into simple, natural Japanese"}.
-Return only JSON: {"translation": "...", "romanization": "${toUr?"Roman Urdu reading of the translation":"Roman Urdu reading of the original Urdu text"}", "back": "${toUr?"a literal Japanese back-translation of your Urdu":"the same Japanese, written with simple words"}"}
+async function viaClaude(text,toUr){
+  const prompt=`You are an interpreter between a Japanese elementary school teacher and a Pakistani child who speaks only Urdu.
+Translate the text below ${toUr?"from Japanese into simple, natural Urdu (Urdu script) a child understands":"from Urdu into simple, natural Japanese"}.
+Return only JSON: {"translation":"...","romanization":"${toUr?"Roman Urdu reading of the translation":"Roman Urdu reading of the original Urdu"}","back":"${toUr?"literal Japanese back-translation of your Urdu":""}"}
 Text:
 ${text}`;
-  try{
-    const r=await ai.json(prompt,{modelTier:"default"});
-    last=toUr?{ja:text,ur:r.translation||"",rom:r.romanization||"",toUr}:{ja:r.translation||"",ur:text,rom:r.romanization||"",toUr};
-    const main=$("out-main");main.textContent=r.translation||"";main.classList.toggle("ur",toUr);
-    $("out-rom").textContent=r.romanization||"";$("out-back").textContent=r.back||"";
-    $("out-say").textContent=toUr?"ウルドゥー語で読み上げ":"日本語で読み上げ";
-    $("out").hidden=false;
-  }catch(e){toast(ERR[e&&e.code]||"翻訳できませんでした。Google翻訳で開いてください。")}
-  finally{busy=false;$("ai-go").textContent="翻訳する";$("ai-go").disabled=false}
-};
-$("out-say").onclick=()=>{if(!last)return;
-  if(last.toUr){if(pickVoice("ur"))speak(last.ur,"ur");else toast("この端末にはウルドゥー語の声がありません。「Google翻訳で開く」で聞いてください")}
-  else speak(last.ja,"ja")};
-$("out-big").onclick=()=>{if(!last)return;cur=last;$("ov-gt").href=gtUrl(last.ur);$("ov-say-ur").hidden=!pickVoice("ur");$("ov-ur").textContent=last.ur;$("ov-ja").textContent=last.ja;$("ov").hidden=false;$("ov-close").focus()};
-$("out-add").onclick=()=>{if(!last)return;mine.push({ja:last.ja,ur:last.ur,rom:last.rom});saveMine();cat="mine";renderTabs();render();toast("カードに追加しました")};
+  const r=await ai.json(prompt,{modelTier:"quick"});
+  return {text:r.translation||"",rom:r.romanization||"",back:r.back||""};
+}
+/* toUr: teacher (ja→ur). returns {ja,ur,rom,back} */
+async function interpret(text,toUr){
+  let r=null;
+  try{r=await gtx(text,toUr?"ja":"ur",toUr?"ur":"ja")}catch(e){if(!ai)throw e}
+  if(r){
+    if(toUr){let back="";try{back=(await gtx(r.text,"ur","ja")).text}catch(e){}
+      return {ja:text,ur:r.text,rom:r.rom,back}}
+    return {ja:r.text,ur:text,rom:r.srcRom,back:""};
+  }
+  const c=await viaClaude(text,toUr);
+  return toUr?{ja:text,ur:c.text,rom:c.rom,back:c.back}:{ja:c.text,ur:text,rom:c.rom,back:""};
+}
 
+/* ---------- conversation ---------- */
+const conv=[];
+const QUICK=["はい","いいえ","わかりました","わかりません","トイレに行きたいです","気分が悪いです","もう一度言ってください","ゆっくり話してください","手伝ってください","終わりました","ありがとう"]
+  .map(ja=>DATA.find(d=>d.ja===ja)).filter(Boolean);
+$("quick").innerHTML=QUICK.map((p,i)=>`<button class="qr" data-q="${i}"><span class="ur">${esc(p.ur)}</span><small>${esc(p.ja)}</small></button>`).join("");
+$("quick").addEventListener("click",e=>{const b=e.target.closest(".qr");if(!b)return;const p=QUICK[b.dataset.q];
+  conv.push({who:"k",ja:p.ja,ur:p.ur,rom:p.rom,back:"",status:"ok"});renderConv();if(pref.auto)speak(p.ja,"ja",true)});
+
+function isUrdu(s){return /[؀-ۿ]/.test(s)}
+function msgHTML(m,i,last){
+  const t=m.who==="t";
+  const orig=t?m.ja:m.ur;
+  const subCls=t?"msub":"msub ur";
+  let body;
+  if(m.status==="pending")body=`<div class="${subCls}">${esc(orig)}</div><div class="pending">訳しています…</div>`;
+  else if(m.status==="err")body=`<div class="${subCls}">${esc(orig)}</div><div class="merr">訳せませんでした（インターネット接続を確認してください）</div><div class="macts"><button data-a="retry" data-i="${i}">もう一度</button><a class="btn" href="${gtUrl(orig,t?"ja":"ur",t?"ur":"ja")}" target="_blank" rel="noopener">Google翻訳で開く</a></div>`;
+  else{
+    const main=t?`<div class="mmain ur">${esc(m.ur)}</div>${m.rom?`<div class="mrom">${esc(m.rom)}</div>`:""}`:`<div class="mmain">${esc(m.ja)}</div>`;
+    const sub=t?`<div class="msub">${esc(m.ja)}</div>`:`<div class="msub ur">${esc(m.ur)}</div>${m.rom?`<div class="mrom">${esc(m.rom)}</div>`:""}`;
+    body=`${main}${sub}${m.back?`<div class="mback">確認（訳し戻し）：${esc(m.back)}</div>`:""}<div class="macts"><button data-a="say" data-i="${i}">${SPK}${t?"ウルドゥー語で読む":"日本語で読む"}</button><button data-a="big" data-i="${i}">大きく</button>${t?`<button data-a="add" data-i="${i}">カードに追加</button>`:""}</div>`;
+  }
+  return `<div class="msg ${t?"t":"k"}${last?" latest":""}"><div class="who">${t?"先生":"児童"}</div>${body}</div>`;
+}
+function renderConv(){
+  $("log").innerHTML=conv.length?conv.map((m,i)=>msgHTML(m,i,i===conv.length-1)).join(""):
+  `<div class="panel intro"><h2>話すとすぐに訳します</h2><ol>
+    <li>先生は緑の「日本語で話す」を押して話します。ウルドゥー語の訳が大きく出て、読み上げられます。</li>
+    <li>児童は橙のボタンを押してウルドゥー語で話します。日本語の訳が出ます。</li>
+    <li>話すのがむずかしいときは、上の返事ボタンを児童がタップします。</li></ol>
+    <p class="hint">初めてマイクを使うときは、ブラウザがマイクの許可を求めます。「許可」を選んでください。</p></div>`;
+  scrollEnd();
+}
+function scrollEnd(){requestAnimationFrame(()=>window.scrollTo({top:document.documentElement.scrollHeight}))}
+async function send(text,who){
+  text=text.trim();if(!text)return;
+  const m={who,status:"pending",ja:who==="t"?text:"",ur:who==="k"?text:""};
+  conv.push(m);renderConv();await run(m);
+}
+async function run(m){
+  const toUr=m.who==="t";
+  m.status="pending";renderConv();
+  try{
+    const r=await interpret(toUr?m.ja:m.ur,toUr);
+    Object.assign(m,r,{status:"ok"});renderConv();
+    if(pref.auto){toUr?speak(m.ur,"ur",true):speak(m.ja,"ja",true)}
+  }catch(e){m.status="err";renderConv()}
+}
+$("log").addEventListener("click",e=>{const b=e.target.closest("button[data-a]");if(!b)return;const m=conv[b.dataset.i];if(!m)return;
+  const a=b.dataset.a;
+  if(a==="say")m.who==="t"?speak(m.ur,"ur"):speak(m.ja,"ja");
+  else if(a==="big")openCard({ja:m.ja,ur:m.ur,rom:m.rom,c:null});
+  else if(a==="add"){mine.push({ja:m.ja,ur:m.ur,rom:m.rom||""});saveMine();renderChips();render();toast("カードに追加しました")}
+  else if(a==="retry")run(m);
+});
+$("conv-clear").onclick=()=>{conv.length=0;stopAll();renderConv()};
+$("tline").addEventListener("submit",e=>{e.preventDefault();const t=$("cin").value;if(!t.trim())return;$("cin").value="";send(t,isUrdu(t)?"k":"t")});
+
+/* speech recognition */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+let rec=null,recWho=null;
+const MIC_L={t:["日本語で話す","聞いています…押すと終了"],k:["اردو میں بولیں","سن رہے ہیں…"]};
+function micUI(who){["t","k"].forEach(w=>{$("mic-"+w).setAttribute("aria-pressed",w===who);$("mic-"+w+"-l").textContent=MIC_L[w][w===who?1:0]})}
+function startRec(who){
+  if(rec){const same=recWho===who;rec.stop();if(same)return}
+  if(!SR){toast("このブラウザは音声入力に対応していません。キーボードのマイクで入力してください");return}
+  stopAll();
+  const r=new SR();rec=r;recWho=who;
+  r.lang=who==="t"?"ja-JP":"ur-PK";r.interimResults=true;r.continuous=false;r.maxAlternatives=1;
+  let text="";
+  r.onresult=e=>{let s="";for(let i=0;i<e.results.length;i++)s+=e.results[i][0].transcript;text=s;$("cin").value=s};
+  r.onerror=e=>{const c=e.error;
+    if(c==="not-allowed"||c==="service-not-allowed")toast("マイクが許可されていません。ブラウザの設定でこのサイトのマイクを許可してください");
+    else if(c==="language-not-supported")toast(who==="k"?"この端末ではウルドゥー語の音声入力が使えません。返事ボタンか文字入力を使ってください":"この端末では日本語の音声入力が使えません");
+    else if(c==="no-speech")toast("声が聞き取れませんでした。もう一度押して話してください");
+    else if(c==="network")toast("インターネットにつながっていないため、音声入力が使えません");
+    else if(c!=="aborted")toast("音声入力が使えませんでした（"+c+"）");
+  };
+  r.onend=()=>{if(rec===r){rec=null;recWho=null;micUI(null)}const t=text.trim();if(t){$("cin").value="";send(t,who)}};
+  try{r.start();micUI(who)}catch(e){rec=null;recWho=null;micUI(null);toast("音声入力を始められませんでした")}
+}
+$("mic-t").onclick=()=>startRec("t");
+$("mic-k").onclick=()=>startRec("k");
+
+/* keep log clear of the fixed composer */
+function measure(){const h=$("composer").offsetHeight;if(h)document.documentElement.style.setProperty("--comph",h+"px")}
+if("ResizeObserver" in window)new ResizeObserver(measure).observe($("composer"));
+window.addEventListener("resize",measure);
+
+/* ---------- add card ---------- */
 $("a-add").onclick=()=>{
   const ja=$("a-ja").value.trim(),ur=$("a-ur").value.trim();
   if(!ja||!ur){toast("日本語とウルドゥー語の両方を入力してください");return}
   mine.push({ja,ur,rom:$("a-rom").value.trim()});saveMine();
-  ["a-ja","a-ur","a-rom"].forEach(i=>$(i).value="");cat="mine";renderTabs();render();toast("追加しました");
+  ["a-ja","a-ur","a-rom"].forEach(i=>$(i).value="");cat="mine";renderChips();render();toast("カードに追加しました");
 };
-renderTabs();render();upd();
+
+renderChips();render();renderConv();setTimeout(fillVoices,0);
 </script>
 </body>
 </html>
