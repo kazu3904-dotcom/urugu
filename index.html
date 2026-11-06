@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
-<title>ウルドゥー語 教室カード</title>
+<title>ウルドゥー語 教室カード｜やさしい学校コミュニケーション</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,11 +45,21 @@ input[type=text],input[type=search],select{font:inherit;font-size:16px;width:100
 .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 
 /* tabs */
-.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
-.tab{border:0;border-radius:0;background:none;flex-direction:column;gap:2px;height:var(--tabh);min-height:0;padding:0;font-size:.78rem;color:var(--muted)}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+.tab{border:0;border-radius:0;background:none;flex-direction:column;gap:2px;height:var(--tabh);min-height:0;padding:0;font-size:.74rem;color:var(--muted)}
 .tab svg{width:24px;height:24px}
 .tab[aria-current="page"]{color:var(--accent);font-weight:700}
 
+/* easy home: large picture-based communication tiles */
+.home-lead{padding:15px 2px 8px}.home-lead h2{font-size:1.25rem;margin:0 0 4px}.home-lead p{margin:0;color:var(--muted);font-size:.9rem}
+.home-section{margin:12px 0 23px}.home-head{display:flex;align-items:center;gap:9px;margin-bottom:9px;font-size:1.05rem;font-weight:900}
+.home-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.home-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:126px;padding:10px 6px;gap:2px;border-radius:18px;border:2px solid var(--line);background:var(--surface)}
+.home-tile .emoji{font-size:2rem;line-height:1.35}.home-tile .japanese{font-size:1.02rem;line-height:1.4;font-weight:900}.home-tile .urdu{font-size:.93rem;line-height:2.0;direction:rtl;font-family:var(--ur);overflow-wrap:anywhere}
+.home-tile.urgent{background:var(--kid-soft);border-color:var(--kid)}
+.home-tile.reply{background:var(--accent-soft);border-color:var(--accent)}
+.home-help{margin:0 0 16px;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--surface);font-size:.9rem}
+@media (min-width:650px){.home-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}.home-tile{min-height:142px}}
 /* cards view */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px 10px;display:flex;flex-direction:column;gap:8px}
 .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
@@ -164,14 +174,20 @@ body.conv .toast{bottom:calc(var(--tabh) + var(--comph,210px) + 10px + env(safe-
     <p class="sub"><span class="ur">اردو</span> ↔ 日本語　言葉カードと会話の通訳</p>
   </div>
   <nav class="tabbar" aria-label="画面の切りかえ">
-    <button class="tab" data-v="cards" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/></svg>カード</button>
+    <button class="tab" data-v="home" aria-current="page"><span aria-hidden="true" style="font-size:1.35rem;line-height:1">🏠</span>かんたん</button>
+    <button class="tab" data-v="cards" aria-current="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/></svg>カード</button>
     <button class="tab" data-v="conv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h11v8H8l-3 3v-3H3z"/><path d="M14 9h7v8h-2v3l-3-3h-5v-4"/></svg>会話</button>
     <button class="tab" data-v="set"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>声・追加</button>
   </nav>
 </header>
 
 <main class="wrap gut">
-  <section id="view-cards" aria-label="言葉カード">
+  <section id="view-home" aria-label="絵で伝える かんたんカード">
+    <div class="home-lead"><h2>えらんで つたえよう！</h2><p>えをタッチすると、ことばが大きく出ます。先生に見せたり、音声で伝えたりできます。</p></div>
+    <div id="home-content"></div>
+    <p class="home-help">🔊 大きく表示したら「日本語で読む」「ウルドゥー語で読む」を押してください。<br>※ 緊急時・体調不良の際は、このアプリだけに頼らず、すぐに先生や周囲の大人に知らせてください。</p>
+  </section>
+  <section id="view-cards" hidden aria-label="言葉カード">
     <div class="bar">
       <input type="search" id="q" placeholder="さがす（例：トイレ、給食）" aria-label="言葉をさがす">
       <div class="chips" id="chips" role="group" aria-label="カテゴリ"></div>
@@ -218,7 +234,7 @@ body.conv .toast{bottom:calc(var(--tabh) + var(--comph,210px) + 10px + env(safe-
     </div>
     <div class="panel">
       <h2>このアプリについて</h2>
-      <p class="hint">会話の翻訳と音声には、Google翻訳の非公式な仕組みを使っています。止まった場合は、カードと「Google翻訳で聞く」を使ってください。名前など個人情報は話したり入力したりしないでください。会話はこの画面を閉じると消えます。</p>
+      <p class="hint">会話の翻訳と音声には、Google翻訳の非公式な仕組みを使っています。止まった場合は、カードと「Google翻訳で聞く」を使ってください。名前など個人情報は話したり入力したりしないでください。新しく追加した「きもち」カードの訳も、ウルドゥー語に詳しい方に確認してください。会話はこの画面を閉じると消えます。</p>
     </div>
   </section>
 </main>
@@ -237,14 +253,19 @@ body.conv .toast{bottom:calc(var(--tabh) + var(--comph,210px) + 10px + env(safe-
     <button class="primary wide" id="ov-say-ur">ウルドゥー語で読む</button>
     <button id="ov-say-ja">日本語で読む</button>
     <a class="btn" id="ov-gt" href="https://translate.google.com/" target="_blank" rel="noopener">Google翻訳で聞く</a>
-    <button class="del wide" id="ov-del">このカードを削除</button>
+    <button id="ov-fav">☆ お気に入りに登録</button>
+    <button class="del" id="ov-del">このカードを削除</button>
   </div>
 </div>
 <div class="toast" id="toast" hidden role="status"></div>
 
 <script>
-const CATS={greet:"あいさつ",class:"授業",life:"生活・給食",kid:"児童から伝える",subj:"教科",item:"持ち物",time:"時間割・曜日",place:"学校の場所",mine:"追加したカード"};
+const CATS={feel:"きもち",greet:"あいさつ",class:"授業",life:"生活・給食",kid:"児童から伝える",subj:"教科",item:"持ち物",time:"時間割・曜日",place:"学校の場所",mine:"追加したカード"};
 const DATA=[
+ ["feel","うれしいです","میں خوش ہوں","main khush hoon"],
+ ["feel","かなしいです","میں اداس ہوں","main udaas hoon"],
+ ["feel","こわいです","مجھے ڈر لگ رہا ہے","mujhe dar lag raha hai"],
+ ["feel","いたいです","مجھے درد ہو رہا ہے","mujhe dard ho raha hai"],
 ["greet","おはようございます","صبح بخیر","subah bakhair"],
 ["greet","こんにちは","السلام علیکم","assalam-o-alaikum"],
 ["greet","さようなら。また明日。","خدا حافظ، کل ملیں گے","khuda hafiz, kal milenge"],
@@ -344,6 +365,31 @@ const DATA=[
 const $=id=>document.getElementById(id);
 const SPK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
 let cat="all",mine=[],cur=null,lastFocus=null;
+let favorites=[];
+try{favorites=JSON.parse(localStorage.getItem("urdu-favorites")||"[]");if(!Array.isArray(favorites))favorites=[]}catch(e){favorites=[]}
+function cardKey(p){return `${p.ja}::${p.ur}`}
+function saveFavorites(){try{localStorage.setItem("urdu-favorites",JSON.stringify(favorites))}catch(e){}}
+const EASY_GROUPS=[
+ {title:"🚨 こまったとき",tone:"urgent",items:[["🚻","トイレに行きたいです"],["🤒","気分が悪いです"],["🤕","頭が痛いです"],["😣","おなかが痛いです"],["🆘","手伝ってください"],["💧","水を飲みたいです"]]},
+ {title:"💛 いまの きもち",tone:"",items:[["😊","うれしいです"],["😢","かなしいです"],["😨","こわいです"],["🤕","いたいです"]]},
+ {title:"💬 すぐに こたえる",tone:"reply",items:[["✅","はい"],["❌","いいえ"],["👍","わかりました"],["❓","わかりません"],["🔁","もう一度言ってください"],["🐢","ゆっくり話してください"]]}
+];
+function renderHome(){
+ const all=[...DATA,...mine.map((m,i)=>({...m,c:"mine",i}))];
+ const picked=favorites.map(k=>all.find(p=>cardKey(p)===k)).filter(Boolean);
+ const sections=[...(picked.length?[{title:"⭐ お気に入り",tone:"reply",items:picked.map(p=>["⭐",p.ja])}]:[]),...EASY_GROUPS];
+ let positions=[];
+ $("home-content").innerHTML=sections.map(g=>{
+   const tiles=g.items.map(([emoji,ja])=>{
+     const p=all.find(x=>x.ja===ja);if(!p)return "";
+     const n=positions.push(p)-1;
+     return `<button class="home-tile ${g.tone}" data-home-n="${n}" aria-label="${esc(p.ja)} を大きく表示"><span class="emoji" aria-hidden="true">${emoji}</span><span class="japanese">${esc(p.ja)}</span><span class="urdu" lang="ur" dir="rtl">${esc(p.ur)}</span></button>`;
+   }).join("");
+   return `<section class="home-section"><div class="home-head">${g.title}</div><div class="home-tiles">${tiles}</div></section>`;
+ }).join("");
+ renderHome.positions=positions;
+}
+$("home-content").addEventListener("click",e=>{const b=e.target.closest("[data-home-n]");if(b)openCard(renderHome.positions[Number(b.dataset.homeN)])});
 try{mine=JSON.parse(localStorage.getItem("urdu-mine")||"[]")}catch(e){mine=[]}
 function saveMine(){try{localStorage.setItem("urdu-mine",JSON.stringify(mine))}catch(e){}}
 function toast(t){const el=$("toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,4000)}
@@ -398,7 +444,7 @@ $("v-test-ur").onclick=()=>speak("صبح بخیر۔ آئیں، مل کر کرت�
 
 /* ---------- views ---------- */
 function showView(v){
-  ["cards","conv","set"].forEach(k=>{$("view-"+k).hidden=k!==v});
+  ["home","cards","conv","set"].forEach(k=>{$("view-"+k).hidden=k!==v});
   document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-current",b.dataset.v===v?"page":"false"));
   document.body.classList.toggle("conv",v==="conv");
   if(v==="conv"){measure();scrollEnd()}else window.scrollTo(0,0);
@@ -431,6 +477,7 @@ function openCard(p){
   $("ov-ur").textContent=p.ur;$("ov-ja").textContent=p.ja;$("ov-rom").textContent=p.rom||"";
   $("ov-gt").href=gtUrl(p.ur);
   $("ov-del").hidden=p.c!=="mine";
+  $("ov-fav").textContent=favorites.includes(cardKey(p))?"★ お気に入りを解除":"☆ お気に入りに登録";
   $("ov").hidden=false;document.body.style.overflow="hidden";$("ov-close").focus();
 }
 function closeCard(){
@@ -443,7 +490,8 @@ $("q").addEventListener("input",render);
 $("ov-close").onclick=closeCard;
 $("ov-say-ur").onclick=()=>cur&&speak(cur.ur,"ur");
 $("ov-say-ja").onclick=()=>cur&&speak(cur.ja,"ja");
-$("ov-del").onclick=()=>{if(!cur||cur.c!=="mine")return;mine.splice(cur.i,1);saveMine();if(!mine.length&&cat==="mine")cat="all";closeCard();renderChips();render();toast("削除しました")};
+$("ov-fav").onclick=()=>{if(!cur)return;const k=cardKey(cur),i=favorites.indexOf(k);if(i>=0)favorites.splice(i,1);else favorites.push(k);saveFavorites();$("ov-fav").textContent=i>=0?"☆ お気に入りに登録":"★ お気に入りを解除";renderHome();toast(i>=0?"お気に入りを解除しました":"お気に入りに登録しました")};
+$("ov-del").onclick=()=>{if(!cur||cur.c!=="mine")return;mine.splice(cur.i,1);saveMine();renderHome();if(!mine.length&&cat==="mine")cat="all";closeCard();renderChips();render();toast("削除しました")};
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("ov").hidden)closeCard()});
 
 /* ---------- translation ---------- */
@@ -531,7 +579,7 @@ $("log").addEventListener("click",e=>{const b=e.target.closest("button[data-a]")
   const a=b.dataset.a;
   if(a==="say")m.who==="t"?speak(m.ur,"ur"):speak(m.ja,"ja");
   else if(a==="big")openCard({ja:m.ja,ur:m.ur,rom:m.rom,c:null});
-  else if(a==="add"){mine.push({ja:m.ja,ur:m.ur,rom:m.rom||""});saveMine();renderChips();render();toast("カードに追加しました")}
+  else if(a==="add"){mine.push({ja:m.ja,ur:m.ur,rom:m.rom||""});saveMine();renderHome();renderChips();render();toast("カードに追加しました")}
   else if(a==="retry")run(m);
 });
 $("conv-clear").onclick=()=>{conv.length=0;stopAll();renderConv()};
@@ -573,10 +621,10 @@ $("a-add").onclick=()=>{
   const ja=$("a-ja").value.trim(),ur=$("a-ur").value.trim();
   if(!ja||!ur){toast("日本語とウルドゥー語の両方を入力してください");return}
   mine.push({ja,ur,rom:$("a-rom").value.trim()});saveMine();
-  ["a-ja","a-ur","a-rom"].forEach(i=>$(i).value="");cat="mine";renderChips();render();toast("カードに追加しました");
+  ["a-ja","a-ur","a-rom"].forEach(i=>$(i).value="");cat="mine";renderHome();renderChips();render();toast("カードに追加しました");
 };
 
-renderChips();render();renderConv();setTimeout(fillVoices,0);
+renderHome();renderChips();render();renderConv();setTimeout(fillVoices,0);
 </script>
 </body>
 </html>
